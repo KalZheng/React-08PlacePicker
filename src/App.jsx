@@ -69,11 +69,14 @@ function App() {
       );
     }
   }
+
+  // useCallback prevent this function being recall
+  // when this is reloaded unless trigger
   const handleRemovePlace = useCallback(function handleRemovePlace() {
     setPickedPlaces((prevPickedPlaces) =>
       prevPickedPlaces.filter((place) => place.id !== selectedPlace.current)
     );
-    setModalIsOpen(false);
+    setModalIsOpen(false); // this line would prevent 8 loop
 
     const storedIds = JSON.parse(localStorage.getItem("selectedPlaces")) || [];
     localStorage.setItem(

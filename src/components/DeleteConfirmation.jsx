@@ -11,6 +11,12 @@ export default function DeleteConfirmation({ onConfirm, onCancel }) {
       clearTimeout(timer);
     };
   }, [onConfirm]);
+  //onConfirm is from app, 
+  // but function is also an object (javascript behavior) 
+  // so if app gets run again 
+  // this function will be keep running (8 loop)
+  // hence u will need a useCallback in app 
+  // to wrap around the function i.e handleRemovePlace
 
   return (
     <div id="delete-confirmation">
